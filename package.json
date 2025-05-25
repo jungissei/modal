@@ -13,7 +13,9 @@
     "watch": "npm run build && concurrently \"npm run watch:sass\" \"npm run watch:ts\" \"npm run watch:ejs\"",
     "serve": "browser-sync start --server 'dist' --files 'dist/**/*'",
     "dev": "concurrently \"npm run watch\" \"npm run serve\"",
-    "test": "playwright test --config=playwright.config.ts"
+    "test:markuplint": "markuplint \"./dist/**/*.html\"",
+    "test:playwright": "playwright test --config=playwright.config.ts",
+    "test": "npm run test:markuplint && npm run test:playwright"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +29,7 @@
     "concurrently": "^9.1.2",
     "ejs": "^3.1.10",
     "ejs-cli": "^2.2.3",
+    "markuplint": "^4.12.0",
     "playwright": "^1.52.0",
     "sass": "^1.89.0",
     "typescript": "^5.8.3"
