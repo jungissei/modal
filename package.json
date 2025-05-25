@@ -12,17 +12,21 @@
     "watch:ejs": "chokidar 'src/**/*.ejs' -c 'npm run build:ejs'",
     "watch": "npm run build && concurrently \"npm run watch:sass\" \"npm run watch:ts\" \"npm run watch:ejs\"",
     "serve": "browser-sync start --server 'dist' --files 'dist/**/*'",
-    "dev": "concurrently \"npm run watch\" \"npm run serve\""
+    "dev": "concurrently \"npm run watch\" \"npm run serve\"",
+    "test": "npx playwright test --config=playwright.config.ts"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.21",
     "browser-sync": "^3.0.4",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.1.2",
     "ejs": "^3.1.10",
     "ejs-cli": "^2.2.3",
+    "playwright": "^1.52.0",
     "sass": "^1.89.0",
     "typescript": "^5.8.3"
   }
