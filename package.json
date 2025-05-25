@@ -3,12 +3,24 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:sass": "npx sass src:dist",
+    "build:ts": "tsc",
+    "build:ejs": "npx ejs-cli -b src/ '**/*.ejs' -e 'inc/' -o dist/",
+    "build": "npm run build:sass && npm run build:ts && npm run build:ejs",
+    "watch:sass": "chokidar 'src/**/*.scss' -c 'npm run build:sass'",
+    "watch:ts": "chokidar 'src/**/*.ts' -c 'npm run build:ts'",
+    "watch:ejs": "chokidar 'src/**/*.ejs' -c 'npm run build:ejs'",
+    "watch": "npm run build && concurrently \"npm run watch:sass\" \"npm run watch:ts\" \"npm run watch:ejs\"",
+    "serve": "browser-sync start --server 'dist' --files 'dist/**/*'",
+    "dev": "concurrently \"npm run watch\" \"npm run serve\""
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.1.2",
     "ejs": "^3.1.10",
     "ejs-cli": "^2.2.3",
     "sass": "^1.89.0",
