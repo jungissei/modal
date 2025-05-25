@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "build:sass": "npx sass src:dist",
+    "build:sass": "npx sass src:dist  --style compressed",
     "build:ts": "tsc",
     "build:ejs": "npx ejs-cli -b src/ '**/*.ejs' -e 'inc/' -o dist/",
     "build": "npm run build:sass && npm run build:ts && npm run build:ejs",
@@ -13,9 +13,12 @@
     "watch": "npm run build && concurrently \"npm run watch:sass\" \"npm run watch:ts\" \"npm run watch:ejs\"",
     "serve": "browser-sync start --server 'dist' --files 'dist/**/*'",
     "dev": "concurrently \"npm run watch\" \"npm run serve\"",
-    "test:markuplint": "markuplint \"./dist/**/*.html\"",
+    "lint:markuplint": "markuplint \"./dist/**/*.html\"",
+    "lint:css": "stylelint \"./dist/**/*.css\"",
+    "lint:scss": "stylelint \"./src/**/*.scss\"",
+    "lint": "npm run lint:markuplint && npm run lint:css && npm run lint:scss",
     "test:playwright": "playwright test --config=playwright.config.ts",
-    "test": "npm run test:markuplint && npm run test:playwright"
+    "test": "npm run lint && npm run test:playwright"
   },
   "author": "",
   "license": "ISC",
@@ -32,6 +35,9 @@
     "markuplint": "^4.12.0",
     "playwright": "^1.52.0",
     "sass": "^1.89.0",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-config-standard-scss": "^15.0.1",
     "typescript": "^5.8.3"
   }
 }
