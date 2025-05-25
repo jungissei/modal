@@ -13,7 +13,7 @@
     "watch": "npm run build && concurrently \"npm run watch:sass\" \"npm run watch:ts\" \"npm run watch:ejs\"",
     "serve": "browser-sync start --server 'dist' --files 'dist/**/*'",
     "dev": "concurrently \"npm run watch\" \"npm run serve\"",
-    "test": "npx playwright test --config=playwright.config.ts"
+    "test": "playwright test --config=playwright.config.ts"
   },
   "author": "",
   "license": "ISC",
